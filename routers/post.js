@@ -146,4 +146,21 @@ router.delete('/posts/:id', auth, async (req, res) => {
 	}
 });
 
+// Route to add a comments
+// paload contains 'comment' named data
+router.patch('/posts/comment/:id', auth, async (req, res) => {
+	const _id = req.params.id;
+	const post = await Post.findById(_id);
+	try {
+		if (!post) {
+			res.send('Post Not Found').status(404);
+		}
+		post.comments.push({ owner: req.user._id, comment: req.body.comment });
+		await post.save();
+		res.send(post).status(200);
+	} catch (error) {
+		res.send(error).status(404);
+	}
+});
+
 module.exports = router;
