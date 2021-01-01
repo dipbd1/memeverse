@@ -34,7 +34,7 @@ Now comes the functionality part. Here I am attaching a shared like of my postma
 But primarily, all routes are using general REST procedure.
 The only exception is the Post/meme creation part.
 
-the you need to send all the data as a form data.
+there you need to send all the data as a form data.
 
 Postman Collection Link:
 [https://www.getpostman.com/collections/5ab578db299aeec6ecd9](https://www.getpostman.com/collections/5ab578db299aeec6ecd9)
