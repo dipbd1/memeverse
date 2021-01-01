@@ -163,4 +163,19 @@ router.patch('/posts/comment/:id', auth, async (req, res) => {
 	}
 });
 
+
+//this link is to delete a comment, but for some reason I come up with a problem
+// that is not letting me know if thedeletion was succesfull on db.
+router.delete('/posts/:postid/comments/:commentid', auth, async (req, res) => {
+	const postid = req.params.postid;
+	const commentid = req.params.commentid;
+	try {
+		const post = await Post.findByIdAndUpdate(postid, { $pull: { comments: { _id: commentid } } },{timestamps: false}).then((obj)=>{
+				res.send(obj).status(200);
+		});
+	} catch (error) {
+		res.send(error).status(400);
+	}
+});
+
 module.exports = router;
